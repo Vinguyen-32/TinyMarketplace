@@ -22,7 +22,7 @@ friendList_sidebar.innerHTML = payload;
 function renderFriendWidgetContent(search = ""){
     return $.ajax({
         type: "GET",
-        url: (`/api/users/${currentUser.id}/friends?search=${search}`),
+        url: (`/api/users/${profile.id || currentUser.id}/friends?search=${search}`),
 
         success: function (body, res, xhr) {
             const friends = body || [];
@@ -30,7 +30,7 @@ function renderFriendWidgetContent(search = ""){
             friends.map(function(friend){
                 payload +=
                     `<tr>
-                        <td>${friend.firstName || "User"} ${friend.lastName || ""}</td>
+                        <td><a href="/personal?profileId=${friend.id}">${friend.firstName || "User"} ${friend.lastName || ""}</a></td>
                         <td class="row d-flex justify-content-end"><i class="far fa-comment-dots"></i></td>
                     </tr>`
                 

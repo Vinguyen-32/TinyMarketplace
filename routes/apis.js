@@ -6,12 +6,14 @@ const jsonParser = bodyParser.json();
 const formidable = require('formidable');
 const _ = require('lodash');
 const fs = require('fs');
+const reqst = require("request");
 const path = require('path');
 
 const stripeFactory = require('stripe');//('sk_test_iVPnpKXLR9EvYdC74iQZNlAO');
 const { ok } = require('assert');
 const { response } = require('express');
 const SECRET_KEY = "sk_test_LXdcKl7hCbf0dwoYaXOY5LMj"; 
+const GOOGLE_MAP_TOKEN = "AIzaSyAHrP1nfdJkOmB32au7S3oXkQiOrCHn2hY";
 
 function initStripe(auth){
     return stripeFactory(auth)
@@ -145,8 +147,71 @@ router.get('/users/:profileId/feeds', function (req, res) {
     })
 });
 
+router.put('/users/:profileId/profile', function (req, res) {
+    const { name, status } = req.body;
+    const { profileId } = req.params;
+
+    database.Profile.findAll({
+        where: {
+            id: profileId
+        }
+    }).then(function(profiles){
+        let profile = profiles[0];
+        if (!profile){
+            res.status(400).send({
+                error: "BAD_REQUEST"
+            })
+        }
+
+        let payload = {
+            data: JSON.parse(JSON.stringify(profile.data || {}))
+        };
+
+        if (status && status.trim() != ""){
+            payload.data.status = status;
+        }
+
+        if (name && name.trim() != ""){
+            let parts = name.split(" ");
+            payload.firstName = parts[0];
+            payload.lastName = parts[1] || "";
+        }
+
+        profile.update(payload).then(function(profile){
+            return res.send(profile);
+        })
+    })
+});
+
+router.get('/users/:profileId/posts', function (req, res) {
+    database.Post.findAll({
+       include: [{
+           model: database.Profile,
+           where: {
+               id: req.params.profileId
+           }
+       },{
+           model: database.Comment,
+           include:[{
+               model: database.Profile
+           }]
+       }, {
+           model: database.Profile,
+           as: "liked"
+       }],
+       order: [
+           ["createdAt", "desc"]
+       ]
+    }).then(function(posts){
+       return res.send(posts);
+    }, function(err){
+        return res.status(500).send(err);
+    })
+});
+
 router.get('/users/:profileId/recommendations', function (req, res) {
     database.Sku.findAll({
+        limit:2,
        include: [{
            model: database.Store,
            include:[{
@@ -358,8 +423,12 @@ router.post('/users/:profileId/posts/:postId/like', jsonParser, function (req, r
 
 router.get('/users/:profileId/friends', function (req, res) {
     const { search } = req.query;
+    const { profileId } = req.params;
 
     let whereClause = {
+        where: {
+            id: profileId,
+        },
         include: [{
             model: database.Profile,
             as: "friends"
@@ -427,10 +496,60 @@ router.post('/users/:profileId/avatar', function (req, res) {
                 })
             }
 
-            profile.updateAttributes({
+            profile.update({
                 avatar: files[0] || "/uploads/user_default_img.png"
             }).then(function(profile){
                 return res.send(profile);
+            }, function(err){
+                return res.status(500).send(err);
+            })
+        }, function(err){
+            return res.status(500).send(err);
+        })
+    });
+    form.parse(req);
+});
+
+router.post('/users/:profileId/banner', function (req, res) {
+    const { profileId } = req.params
+
+    let form = new formidable.IncomingForm(),
+    files = [],
+    fields = {};
+    form.on('field', function(field, value) {
+        fields[field] = value;
+    })
+    form.on('file', function(field, file) {
+        const oldPath = file.path; 
+        const newPath = path.join(__dirname, '../public/uploads') + '/' + file.name;
+        const rawData = fs.readFileSync(oldPath) 
+        fs.writeFile(newPath, rawData, function(err){});
+        files.push(`uploads/${file.name}`);
+    })
+    form.on('end', function() {
+        console.log('done');
+        database.Profile.findAll({
+            where: {
+                id: profileId
+            }
+        }).then(function(profiles){
+            let profile = profiles[0];
+
+            if (!profile){
+                return res.status(404).send({
+                    error: "NOT_FOUND"
+                })
+            }
+
+            let pData = JSON.parse(JSON.stringify(profile.data || {}));
+            pData.banner_image = files[0] || "/images/cover-img.jpg"
+
+            profile.update({
+                data: pData
+            }).then(function(profile){
+                return res.send(profile);
+            }, function(err){
+                return res.status(500).send(err);
             })
         }, function(err){
             return res.status(500).send(err);
@@ -552,5 +671,269 @@ router.delete('/users/:profileId/shoppingCarts/active/items', jsonParser, functi
     })
 });
 
+router.get('/users/:profileId/store', function (req, res) {
+    const { profileId } = req.params;
+
+    database.Store.findAll({
+        include: [{
+            model: database.Profile,
+            where: {
+                id: profileId
+            }
+        }]
+    }).then(function(stores){
+        let store = stores[0];
+        if (!store){
+            database.Store.create({
+                name: "Default Shop Name",
+                descripttion: "Your dream shop",
+                status: "CLOSE",
+                avatar: "https://cdn4.iconfinder.com/data/icons/shopping-113/24/store_local_shop_building-512.png",
+                profileId
+            }).then(function(store){
+                return res.send(store);
+            })
+        }
+        else {
+            return res.send(store);
+        }
+    })
+})
+
+router.get('/stores/:storeId', function (req, res) {
+    const { storeId } = req.params;
+
+    database.Store.findAll({
+        where: {
+            id: storeId,
+            status: "OPEN"
+        }
+    }).then(function(stores){
+        let store = stores[0];
+        if (!store){
+            return res.status(404).send({
+                error: "NOT_FOUND"
+            })
+        }
+        else {
+            return res.send(store);
+        }
+    })
+})
+
+router.put('/users/:profileId/store/status', function (req, res) {
+    const { profileId } = req.params;
+
+    database.Store.findAll({
+        include: [{
+            model: database.Profile,
+            where: {
+                id: profileId
+            }
+        }]
+    }).then(function(stores){
+        let store = stores[0];
+
+        store.update({
+            status: store.status == "CLOSE" ? "OPEN" : "CLOSE"
+        }).then(function(store){
+            return res.send(store)
+        })
+    })
+})
+
+router.get('/stores/:storeId/skus', function (req, res) {
+    const { storeId } = req.params;
+    database.Sku.findAll({
+       include: [{
+           model: database.Store,
+           where: {
+               id: storeId
+           }
+       }]
+    }).then(function(skus){
+       return res.send(skus);
+    }, function(err){
+        return res.status(500).send(err);
+    })
+});
+
+router.post('/stores/:storeId/skus', function (req, res) {
+    const { storeId } = req.params;
+
+    let form = new formidable.IncomingForm(),
+    files = [],
+    fields = {};
+    form.on('field', function(field, value) {
+        fields[field] = value;
+    })
+    form.on('file', function(field, file) {
+        const oldPath = file.path; 
+        const newPath = path.join(__dirname, `../public/uploads/stores`) + '/' + file.name;
+        const rawData = fs.readFileSync(oldPath) 
+        fs.writeFile(newPath, rawData, function(err){});
+        files.push(`uploads/stores/${file.name}`);
+    })
+    form.on('end', function() {
+        console.log('done');
+        database.Sku.create({
+            name: fields.name,
+            description: fields.description,
+            price: fields.price,
+            currency: "USD",
+            images: files,
+            storeId: storeId
+        }).then(function(sku){
+            return res.send(sku);
+        }, function(err){
+            return res.status(500).send(err);
+        })
+    });
+    form.parse(req);
+});
+
+router.put('/stores/:storeId/skus/:skuId', function (req, res) {
+    const { storeId, skuId } = req.params;
+
+    let form = new formidable.IncomingForm(),
+    files = [],
+    fields = {};
+    form.on('field', function(field, value) {
+        fields[field] = value;
+    })
+    form.on('file', function(field, file) {
+        const oldPath = file.path; 
+        const newPath = path.join(__dirname, `../public/uploads/stores`) + '/' + file.name;
+        const rawData = fs.readFileSync(oldPath) 
+        fs.writeFile(newPath, rawData, function(err){});
+        files.push(`uploads/stores/${file.name}`);
+    })
+    form.on('end', function() {
+        console.log('done');
+
+        database.Sku.findAll({
+            where: {
+                id: skuId
+            }
+        }).then(function(skus){
+            let sku = skus[0];
+            if (!sku){
+                return res.status(404).send({
+                    error: "NOT_FOUND"
+                })
+            }
+
+
+            sku.update({
+                name: fields.name,
+                description: fields.description,
+                price: fields.price,
+                images: files,
+            }).then(function(sku){
+                return res.send(sku);
+            }, function(err){
+                return res.status(500).send(err);
+            })
+        })
+    });
+    form.parse(req);
+});
+
+router.delete('/stores/:storeId/skus/:skuId', function (req, res) {
+    const { skuId } = req.params;
+
+    database.Sku.destroy({
+        where: {
+            id: skuId
+        }
+    }).then(function(){
+        return res.send({
+            status: "ok"
+        })
+    })
+})
+
+router.put('/stores/:storeId', function (req, res) {
+    const { storeId } = req.params;
+
+    let form = new formidable.IncomingForm(),
+    files = [],
+    fields = {};
+    form.on('field', function(field, value) {
+        fields[field] = value;
+    })
+    form.on('file', function(field, file) {
+        const oldPath = file.path; 
+        const newPath = path.join(__dirname, `../public/uploads/stores`) + '/' + file.name;
+        const rawData = fs.readFileSync(oldPath) 
+        fs.writeFile(newPath, rawData, function(err){});
+        files.push(`uploads/stores/${file.name}`);
+    })
+    form.on('end', function() {
+        console.log('done');
+
+        database.Store.findAll({
+            where: {
+                id: storeId
+            }
+        }).then(function(stores){
+            let store = stores[0];
+            if (!store){
+                return res.status(404).send({
+                    error: "NOT_FOUND"
+                })
+            }
+
+            let log = null, lat = null;
+
+            new Promise(function(ok, ko){
+                if (fields.address && fields.address.trim() != ""){
+                    geoCode(fields.address, function(err, data){
+                        lat = _.get(data, "geometry.location.lat") || null;
+                        log = _.get(data, "geometry.location.lng") || null;
+                        return ok();
+                    })
+                }
+                else {
+                    return ok();
+                }
+            }).then(function(){
+                store.update({
+                    name: fields.name,
+                    description: fields.description,
+                    avatar: files[0],
+                    address: fields.address,
+                    longitude: log,
+                    latitude: lat
+                }).then(function(sku){
+                    return res.send(sku);
+                }, function(err){
+                    return res.status(500).send(err);
+                })
+            })
+        })
+    });
+    form.parse(req);
+});
+
+function geoCode(address, cb){
+    let qs = {
+        key: GOOGLE_MAP_TOKEN,
+        language: "en",
+        address: address,
+    };
+     
+    reqst({
+        uri: 'https://maps.googleapis.com/maps/api/geocode/json',
+        method: 'GET',
+        qs: qs,
+    },
+    function(err, res, body) {
+        let result = JSON.parse(body).results[0];
+        console.log(body)
+        console.log(JSON.stringify(result, null, 4))
+        return cb(null, result)
+    })
+}
 
 module.exports = router;

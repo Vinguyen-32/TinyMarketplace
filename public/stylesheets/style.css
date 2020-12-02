@@ -61,7 +61,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
+	/* font: inherit; */
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -2901,6 +2901,14 @@ footer {
 }
 .message-btn a i {
 	padding-right: 5px;
+}
+
+.message-btn button {
+	display: inline-block;
+	color: #ffffff;
+	font-size: 16px;
+	padding: 12px;
+	font-weight: 500;
 }
 
 
@@ -5773,6 +5781,42 @@ a:hover {
 	background: #e44d3a;
 	color: #fff;
 }
+
+
+
+.add-pic-box #bannerUpload {
+	height: 0;
+	overflow: hidden;
+	width: 0;
+	float: left;
+}
+
+.add-pic-box #bannerUploadLabel {
+	background: #fff;
+	border: 2px solid #e44d3a;
+	border-radius: 3px;
+	color: #e44d3a;
+	cursor: pointer;
+	display: inline-block;
+	font-size:15px;
+	font-weight: 600;
+	outline: none;
+	padding: 12px 20px;
+	position: relative;
+	transition: all 0.3s;
+	vertical-align: middle;
+	margin: 0;
+	float: right;
+	text-transform: uppercase;
+}
+.add-pic-box #bannerUploadLabel:hover {
+	background: #e44d3a;
+	color: #fff;
+}
+
+
+
+
 .noreview li i{
 	color: #b2b2b2;
 }
@@ -5915,9 +5959,7 @@ a:hover {
 	font-weight: 400;
 	padding-bottom: 10px;
 }
-.modal-header h3{
-	font-size: 18px;
-}
+
 .search-container button {
     padding: 8px 10px;
     text-align: center;
@@ -6369,13 +6411,6 @@ a:hover {
 	padding-left: 12px;
 }
 
-.modal-header{
-	background-color: #e44d3a;
-	display: block!important;
-}
-.modal-body{
-	padding: 0;
-}
 .notice{
 	background-color: #ddf3ff;
 	padding: 15px;
@@ -6452,25 +6487,7 @@ a:hover {
 .sponser{
 	padding:15px;
 }
-.modal-footer{
-	display: block!important;
-	border-top: none;
-	padding-bottom: 30px;
-}
-.modal-footer button{
-	font-size: 15px;
-	font-weight: 500;
-	background-color: unset;
-	border:none;
-	padding: 10px;
-	border:1px solid #d2d2d2;
-	border-radius: 3px;
-}
-.modal-footer button:hover{
-	background-color: #e44d3a;
-	color: #fff;
-	border:1px solid #e44d3a;
-}
+
 
 .place-bid-btn {
 	font-size: 15px;

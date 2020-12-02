@@ -28,6 +28,12 @@ module.exports = function (sequelize, DataTypes) {
         },
         schedule: {
 			type: DataTypes.JSON
-        }
+		},
+		longitude: {
+			type: DataTypes.FLOAT
+		},
+		latitude: {
+			type: DataTypes.FLOAT
+		}
 	});
 };

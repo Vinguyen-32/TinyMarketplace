@@ -25,6 +25,9 @@ module.exports = function (sequelize, DataTypes) {
         },
         bio: {
 			type: DataTypes.TEXT
+		},
+		data: {
+			type: DataTypes.JSON
         },
 	});
 };

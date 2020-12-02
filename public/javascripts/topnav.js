@@ -26,7 +26,7 @@ topnav.innerHTML = `<header>
                     </a>
                 </li>
                 <li>
-                    <a href="/marketPlace" title="">
+                    <a href="/personal?profileId=${currentUser.id}" title="">
                         <span><img src="images/icon4.png" alt=""></span>
                         Profiles
                     </a>
@@ -167,7 +167,7 @@ topnav.innerHTML = `<header>
         <div class="user-account">
             <div class="user-info">
                 <img src="${currentUser.avatar || "User"}" width="30" height="30" alt="">
-                <a href="/marketPlace" title="">${currentUser.firstName || "User"}</a>
+                <a href="/personal?profileId=${currentUser.id}" title="">${currentUser.firstName || "User"}</a>
                 <i class="fas fa-sort-down"></i>
             </div>
             <div class="user-account-settingss">

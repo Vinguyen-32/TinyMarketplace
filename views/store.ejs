@@ -1,0 +1,969 @@
+<html>
+
+<head>
+    <title>This is homepage</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/afaa2c21f5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="stylesheets/marketPlace.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/animate.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/line-awesome.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/line-awesome-font-awesome.min.css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/responsive.css">
+
+
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/popper.js"></script>
+    <!-- <script type="text/javascript" src="javascripts/bootstrap.min.js"></script> -->
+    <script type="text/javascript" src="javascripts/flatpickr.min.js"></script>
+    <script type="text/javascript" src="lib/slick/slick.min.js"></script>
+    <script type="text/javascript" src="javascripts/script.js"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+    <style>
+        #map {
+            height: 400px;
+        }
+
+        .storeImageDiv{
+            position:relative;
+            width:60%;
+            padding-bottom:60%;
+            margin-left:20%;
+            border-radius:50%;
+            overflow:hidden;
+            display: flex;
+            justify-content: center;
+        }
+        .storeImageDiv img{
+            position:absolute;
+            object-fit: cover;
+            width:100%;
+            height:100%;
+        }
+
+        .recommendationImageDiv{
+            /* position:relative; */
+            width:60%;
+            /* padding-bottom:60%; */
+            /* margin-left:20%; */
+            border-radius:50%;
+            overflow:hidden;
+            display: flex;
+            /* justify-content: center; */
+        }
+        .recommendationImageDiv img{
+            position:absolute;
+            object-fit: cover;
+            /* width:100%;
+            height:100%; */
+        }
+
+        .postImageDiv{
+            position:relative;
+            width:60%;
+            border-radius:50%;
+            overflow:hidden;
+            display: flex;
+            justify-content: center;
+        }
+        .postImageDiv img{
+            position:absolute;
+            object-fit: cover;
+            width:100%;
+            height:100%;
+        }
+
+        textarea {
+            background: transparent;
+            color: transparent;
+            resize: none;
+            border: 0 none;
+            width: 100%;
+            font-size: 5em;
+            outline: none;
+        }
+
+        .user-rec-img {
+            float: left;
+            width: 100%;
+            text-align: center;
+            /* margin-bottom: 28px; */
+            /* margin-top: -95px; */
+            position: relative;
+        }.user-rec-img img {
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            -ms-border-radius: 50px;
+            -o-border-radius: 50px;
+            border-radius: 50px;
+            float: none;
+            border: 1px solid #fff;
+        }
+            
+        #add-inventory-btn {
+            color: #b2b2b2;
+            width: 30px;
+            height: 30px;
+            border-radius: 3px;
+            border: 1px solid #e5e5e5;
+            text-align: center;	
+            line-height: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: -5px;
+            -webkit-transition: all 0.4s ease-in;
+            -moz-transition: all 0.4s ease-in;
+            -ms-transition: all 0.4s ease-in;
+            -o-transition: all 0.4s ease-in;
+            transition: all 0.4s ease-in;
+        }
+
+        #add-inventory-btn:hover {
+            background-color: #e44d3a;
+            color: #fff;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var currentUser = JSON.parse(localStorage.getItem("currentUser" || "{}"));
+    </script>
+    
+    <!-- Edit status Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Edit Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Name</span>
+                        </div>
+                        <input id="edit-name" type="text" class="form-control" placeholder="You are called...?" aria-label="Name" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Status</span>
+                        </div>
+                        <input id="edit-status" type="text" class="form-control" placeholder="Status" aria-label="Share something with everyone..." aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="updateProfile()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add product Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="Add Product"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Create Sku</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Name</span>
+                        </div>
+                        <input id="add-product-name" type="text" class="form-control" placeholder="What's your product called?" aria-label="Name" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Description</span>
+                        </div>
+                        <input id="add-product-description" type="text" class="form-control" placeholder="Some description for your product..." aria-label="..." aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Price</span>
+                        </div>
+                        <input id="add-product-price" type="number" class="form-control" placeholder="How much is your product?" aria-label="..." aria-describedby="basic-addon1">
+                    </div>
+                    <div id="createProductImageBtn"  style="float:right; margin:10px" class="add-dp">
+                        <label><i class="fas fa-camera" onclick="document.getElementById('createProductImage').click()"></i></label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="createSku()">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit product Modal -->
+    <div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="Edit Product"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Edit Sku</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Name</span>
+                        </div>
+                        <input id="edit-product-name" type="text" class="form-control" placeholder="What's your product called?" aria-label="Name" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Description</span>
+                        </div>
+                        <input id="edit-product-description" type="text" class="form-control" placeholder="Some description for your product..." aria-label="..." aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Price</span>
+                        </div>
+                        <input id="edit-product-price" type="number" class="form-control" placeholder="How much is your product?" aria-label="..." aria-describedby="basic-addon1">
+                    </div>
+                    <div id="editProductImageBtn"  style="float:right; margin:10px" class="add-dp">
+                        <label><i class="fas fa-camera" onclick="document.getElementById('editProductImage').click()"></i></label>
+                    </div>
+                    <input id="edit-product-id" style="display: none;" type="number" class="form-control" aria-describedby="basic-addon1">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editSku()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit store Modal -->
+    <div class="modal fade" id="editStoreModal" tabindex="-1" role="dialog" aria-labelledby="Edit store"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Edit Store</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Name</span>
+                        </div>
+                        <input id="edit-store-name" type="text" class="form-control" placeholder="What's your store called?" aria-label="Name" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Description</span>
+                        </div>
+                        <input id="edit-store-description" type="text" class="form-control" placeholder="Some description for your store..." aria-label="..." aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Address</span>
+                        </div>
+                        <input id="edit-store-address" type="text" class="form-control" placeholder="Where is your store located?" aria-label="..." aria-describedby="basic-addon1">
+                    </div>
+                    <div id="editStoreImageBtn"  style="float:right; margin:10px" class="add-dp">
+                        <label><i class="fas fa-camera" onclick="document.getElementById('editStoreImage').click()"></i></label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editStore()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="topnav"></div>
+        <input style="visibility: hidden;" type="file" name="file" id="avatarUpload" class="button" onchange="changeAvatar()">
+        <input style="visibility: hidden;" type="file" id="bannerUploadBtn" onchange="changeBanner()">
+        <input style="visibility: hidden;" type="file"  multiple="multiple" id="createProductImage">
+        <input style="visibility: hidden;" type="file"  multiple="multiple" id="editProductImage">
+        <input style="visibility: hidden;" type="file" id="editStoreImage">
+        
+        <section class="cover-sec">
+            <img id="banner_image" src="images/cover-img.jpg" alt="" height="300" style="object-fit: cover;">
+            <div class="add-pic-box">
+                <div class="container">
+                    <div class="row no-gutters">
+                        <div id="changeBannerBtn" class="col-lg-12 col-sm-12">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <main>
+            <div class="main-section">
+                <div class="container">
+                    <div class="main-section-data">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="main-left-sidebar">
+                                    <div id="user_profile_sidebar" class="user_profile">
+                                    </div>
+                                    <!--user_profile end-->
+                                    <div style="visibility:hidden"  class="suggestions full-width">
+                                        <div class="sd-title">
+                                            <h3>People Viewed Profile</h3>
+                                            <!-- <i class="la ellipsis-v"></i> -->
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </div>
+                                        <!--sd-title end-->
+                                        <div class="suggestions-list">
+                                            
+                                            <div class="suggestion-usd">
+                                                <img src="images/s6.png" alt="">
+                                                <div class="sgt-text">
+                                                    <h4>John Doe</h4>
+                                                    <span>PHP Developer</span>
+                                                </div>
+                                                <span><i class="fas fa-plus"></i></span>
+                                            </div>
+                                            <div class="view-more">
+                                                <a href="#" title="">View More</a>
+                                            </div>
+                                        </div>
+                                        <!--suggestions-list end-->
+                                    </div>
+                                    <!--suggestions end-->
+                                </div>
+                                <!--main-left-sidebar end-->
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="main-ws-sec">
+                                    <div class="user-tab-sec rewivew">
+                                        <h3 id="user_personal_name"></h3>
+                                        <div id="status-text"></div>
+                                        <!--star-descp end-->
+                                        <div style="display:none;" class="tab-feed st2 settingjb">
+                                            <ul>
+                                                <li data-tab="my-store" class="active">
+                                                    <a href="#" title="">
+                                                        <img src="images/ic6.png" alt="">
+                                                        <span>Shop</span>
+                                                    </a>
+                                                </li>
+                                                <li data-tab="my-posts">
+                                                    <a href="#" title="">
+                                                        <img src="images/ic1.png" alt="">
+                                                        <span>Posts</span>
+                                                    </a>
+                                                </li>
+                                                <li data-tab="saved-posts">
+                                                    <a href="#" title="">
+                                                        <img src="images/ic4.png" alt="">
+                                                        <span>Saved</span>
+                                                    </a>
+                                                </li>
+                                                
+
+                                            </ul>
+                                        </div><!-- tab-feed end-->
+                                    </div>
+                                    
+                                    <div class="product-feed-tab" id="my-posts">
+                                        <div id="postSection" class="posts-section">
+                                        </div>
+                                    </div>
+
+                                    <div class="product-feed-tab current" id="my-store">
+                                        <div id="storeSection" class="posts-section">
+                                        </div>
+                                    </div>
+
+                                    
+                                </div>
+                                <!--main-ws-sec end-->
+                            </div>
+                            <div class="col-lg-3">
+                                <div style="visibility: hidden;" class="right-sidebar">
+                                    <div class="message-btn">
+                                        <!-- <a href="profile-account-setting.html" title=""><i class="fas fa-cog"></i>Edit</a> -->
+                                        <!-- Button trigger modal -->
+                                        
+                                    </div>
+                                    <div class="widget widget-portfolio">
+                                        <div class="wd-heady">
+                                            <h3>Photos</h3>
+                                            <img src="images/photo-icon.png" alt="">
+                                        </div>
+                                        <div class="pf-gallery">
+                                            <ul>
+                                                <li><a href="#" title=""><img src="images/pf-gallery1.png" alt=""></a>
+                                                </li>
+                                                <li><a href="#" title=""><img src="images/pf-gallery2.png" alt=""></a>
+                                                </li>
+                                                <li><a href="#" title=""><img src="images/pf-gallery3.png" alt=""></a>
+                                                </li>
+                                                <li><a href="#" title=""><img src="images/pf-gallery4.png" alt=""></a>
+                                                </li>
+                                                <li><a href="#" title=""><img src="images/pf-gallery5.png" alt=""></a>
+                                                </li>
+                                                <li><a href="#" title=""><img src="images/pf-gallery6.png" alt=""></a>
+                                                </li>
+                                                <li><a href="#" title=""><img src="images/pf-gallery7.png" alt=""></a>
+                                                </li>
+                                                <li><a href="#" title=""><img src="images/pf-gallery8.png" alt=""></a>
+                                                </li>
+                                                <li><a href="#" title=""><img src="images/pf-gallery9.png" alt=""></a>
+                                                </li>
+                                                <li><a href="#" title=""><img src="images/pf-gallery10.png" alt=""></a>
+                                                </li>
+                                                <li><a href="#" title=""><img src="images/pf-gallery11.png" alt=""></a>
+                                                </li>
+                                                <li><a href="#" title=""><img src="images/pf-gallery12.png" alt=""></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!--pf-gallery end-->
+                                    </div>
+                                </div>
+                                <!--right-sidebar end-->
+                            </div>
+                        </div>
+                    </div><!-- main-section-data end-->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footy-sec mn no-margin">
+                <div class="container">
+                    <ul>
+                        <li><a href="help-center.html" title="">Help Center</a></li>
+                        <li><a href="about.html" title="">About</a></li>
+                        <li><a href="#" title="">Privacy Policy</a></li>
+                        <li><a href="#" title="">Community Guidelines</a></li>
+                        <li><a href="#" title="">Cookies Policy</a></li>
+                        <li><a href="#" title="">Career</a></li>
+                        <li><a href="forum.html" title="">Forum</a></li>
+                        <li><a href="#" title="">Language</a></li>
+                        <li><a href="#" title="">Copyright Policy</a></li>
+                    </ul>
+                    <p><img src="images/copy-icon2.png" alt="">Copyright 2019</p>
+                    <img class="fl-rgt" src="images/logo2.png" alt="">
+                </div>
+            </div>
+        </footer>
+        <!--footer end-->
+
+        <div class="overview-box" id="overview-box">
+            <div class="overview-edit">
+                <h3>Overview</h3>
+                <span>5000 character left</span>
+                <form>
+                    <textarea></textarea>
+                    <button type="submit" class="save">Save</button>
+                    <button type="submit" class="cancel">Cancel</button>
+                </form>
+                <a href="#" title="" class="close-box"><i class="fas fa-close"></i></a>
+            </div>
+            <!--overview-edit end-->
+        </div>
+        <!--overview-box end-->
+
+
+        <div class="overview-box" id="experience-box">
+            <div class="overview-edit">
+                <h3>Experience</h3>
+                <form>
+                    <input type="text" name="subject" placeholder="Subject">
+                    <textarea></textarea>
+                    <button type="submit" class="save">Save</button>
+                    <button type="submit" class="save-add">Save & Add More</button>
+                    <button type="submit" class="cancel">Cancel</button>
+                </form>
+                <a href="#" title="" class="close-box"><i class="fas fa-close"></i></a>
+            </div>
+            <!--overview-edit end-->
+        </div>
+        <!--overview-box end-->
+
+        <div class="overview-box" id="education-box">
+            <div class="overview-edit">
+                <h3>Education</h3>
+                <form>
+                    <input type="text" name="school" placeholder="School / University">
+                    <div class="datepicky">
+                        <div class="row">
+                            <div class="col-lg-6 no-left-pd">
+                                <div class="datefm">
+                                    <input type="text" name="from" placeholder="From" class="datepicker">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 no-righ-pd">
+                                <div class="datefm">
+                                    <input type="text" name="to" placeholder="To" class="datepicker">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" name="degree" placeholder="Degree">
+                    <textarea placeholder="Description"></textarea>
+                    <button type="submit" class="save">Save</button>
+                    <button type="submit" class="save-add">Save & Add More</button>
+                    <button type="submit" class="cancel">Cancel</button>
+                </form>
+                <a href="#" title="" class="close-box"><i class="fas fa-close"></i></a>
+            </div>
+            <!--overview-edit end-->
+        </div>
+        <!--overview-box end-->
+
+        <div class="overview-box" id="location-box">
+            <div class="overview-edit">
+                <h3>Location</h3>
+                <form>
+                    <div class="datefm">
+                        <select>
+                            <option>Country</option>
+                            <option value="pakistan">Pakistan</option>
+                            <option value="england">England</option>
+                            <option value="india">India</option>
+                            <option value="usa">United Sates</option>
+                        </select>
+                        <i class="fa fa-globe"></i>
+                    </div>
+                    <div class="datefm">
+                        <select>
+                            <option>City</option>
+                            <option value="london">London</option>
+                            <option value="new-york">New York</option>
+                            <option value="sydney">Sydney</option>
+                            <option value="chicago">Chicago</option>
+                        </select>
+                        <i class="fa fa-map-marker"></i>
+                    </div>
+                    <button type="submit" class="save">Save</button>
+                    <button type="submit" class="cancel">Cancel</button>
+                </form>
+                <a href="#" title="" class="close-box"><i class="fas fa-close"></i></a>
+            </div>
+            <!--overview-edit end-->
+        </div>
+        <!--overview-box end-->
+
+        <div class="overview-box" id="skills-box">
+            <div class="overview-edit">
+                <h3>Skills</h3>
+                <ul>
+                    <li><a href="#" title="" class="skl-name">HTML</a><a href="#" title="" class="close-skl"><i
+                                class="fas fa-close"></i></a></li>
+                    <li><a href="#" title="" class="skl-name">php</a><a href="#" title="" class="close-skl"><i
+                                class="fas fa-close"></i></a></li>
+                    <li><a href="#" title="" class="skl-name">css</a><a href="#" title="" class="close-skl"><i
+                                class="fas fa-close"></i></a></li>
+                </ul>
+                <form>
+                    <input type="text" name="skills" placeholder="Skills">
+                    <button type="submit" class="save">Save</button>
+                    <button type="submit" class="save-add">Save & Add More</button>
+                    <button type="submit" class="cancel">Cancel</button>
+                </form>
+                <a href="#" title="" class="close-box"><i class="fas fa-close"></i></a>
+            </div>
+            <!--overview-edit end-->
+        </div>
+        <!--overview-box end-->
+
+        <div class="overview-box" id="create-portfolio">
+            <div class="overview-edit">
+                <h3>Create Portfolio</h3>
+                <form>
+                    <input type="text" name="pf-name" placeholder="Portfolio Name">
+                    <div class="file-submit">
+                        <input type="file" id="file">
+                        <label for="file">Choose File</label>
+                    </div>
+                    <div class="pf-img">
+                        <img src="images/np.png" alt="">
+                    </div>
+                    <input type="text" name="website-url" placeholder="htp://www.example.com">
+                    <button type="submit" class="save">Save</button>
+                    <button type="submit" class="cancel">Cancel</button>
+                </form>
+                <a href="#" title="" class="close-box"><i class="fas fa-close"></i></a>
+            </div>
+            <!--overview-edit end-->
+        </div>
+        <!--overview-box end-->
+
+    </div>
+    <!--theme-layout end-->
+    <script>
+
+        function renderUserBanner(){
+            document.getElementById("banner_image").src = (/*profile.data ||*/ {}).banner_image || "images/cover-img.jpg";
+        }
+
+
+        function changeBanner(){
+            let formData = new FormData();
+            // Attach file
+            let imagesPicker = $('#bannerUploadBtn')[0]
+            for (let i = 0; i < imagesPicker.files.length; i++){
+                let file = imagesPicker.files[i];
+                formData.append(`image${i}`, file); 
+            }
+
+            $.ajax({
+                type: "POST",
+                url: `/api/users/${currentUser.id}/banner`,
+                data: formData,
+                contentType: false,
+                processData: false, 
+                success: function (body, res, xhr) {
+                    let profile = body;
+
+                    // localStorage.setItem("currentUser", JSON.stringify(profile, null, 4));           
+                    renderUserBanner();
+                },
+                error: function(err){
+                    alert("Unable to create post, please try again.")
+                }
+            })
+        }
+
+        function renderPersonalDetail(){
+            document.getElementById("edit-status").value = `${(currentUser.data || {}).status || ""}`;
+            document.getElementById("edit-name").value = `${currentUser.firstName} ${currentUser.lastName}`;
+        }
+
+        function updateProfile(){
+            let payload = {
+                status: document.getElementById("edit-status").value.trim()
+            };
+
+            let nName = document.getElementById("edit-name").value.trim() ;
+            if (nName !=  `${currentUser.firstName} ${currentUser.lastName}`){
+                payload.name = nName;
+            }
+
+            $.ajax({
+                type: "PUT",
+                url: `/api/users/${currentUser.id}/profile`,
+                contentType: "application/json",
+                data: JSON.stringify(payload),
+                success: function (body, res, xhr) {
+                    currentUser = body;
+                    localStorage.setItem("currentUser", JSON.stringify(body, null, 4));
+                    renderPersonalDetail();
+                },
+                error: function(err){
+                    alert("Unable to update profile, please try again.")
+                }
+            })
+        }
+
+        let store;
+
+        function renderShop(){
+
+            return $.ajax({
+                type: "GET",
+                url: `/api/stores/<%- storeId %>`,
+                success: function (body, res, xhr) {
+                    store = body || {};
+
+                    let payload = "";
+                    payload += `
+                        <div class="post-bar">
+                            <div class="post_topbar">
+                                <div class="user-pro-img">
+                                    <img src="${store.avatar}" height="200" width="200" alt="" style="object-fit: cover;">
+        
+                                </div>
+                            </div>
+                            <div style="text-align: center;">
+                                <font size="+2"><b >${ store.name || "Default Shop Name" }</b></font>
+                            </div>
+                            <br>
+                            <br>
+                            <div style="text-align: center;">
+                                ${ store.description || "" }
+                            </div>
+                            <hr>
+                            <div>
+                                <b>Menu</b> 
+                            </div>
+                            <hr>
+                            <div id="inventory-section" class="pslider">
+
+                            </div>
+                        </div>`
+                
+                    document.getElementById("storeSection").innerHTML = payload;
+                    // initInventorySection();
+                    renderInventory();
+                    prepareEditStoreModal();
+                }
+            })
+        }
+
+        let skus = [];
+
+        function renderInventory(){
+            return $.ajax({
+                type: "GET",
+                url: `/api/stores/${store.id}/skus`,
+                success: function (body, res, xhr) {
+                    skus = body || [];
+                    let payload = "";
+                    let row = ""
+                    let count = 0;
+                    skus.forEach((item, idx) => {
+                        count++;
+                        if (row == ""){
+                            row += `<div class="row">`;
+                        }
+
+                        // alert(JSON.stringify(post.comments, null, 4))
+                        row += `
+                            <div class="card" style="width: 220px; margin:10px" tabindex="-1" data-slick-index="-3" aria-hidden="true">
+                                <div id="re" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        ${
+                                            item.images.map(function(img, idx){
+                                                return `
+                                                    <div class="carousel-item ${idx == 0 ? "active" : ""}">
+                                                        <img src="${ img }" class="d-block w-100" height="200" style="object-fit: cover;" alt="...">
+                                                    </div>`
+                                            })
+                                        }
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleControls"
+                                        role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon"
+                                            aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleControls"
+                                        role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon"
+                                            aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">                
+                                        <span  style="text-align: left; float:left" >
+                                            <b>${item.name}</b>
+                                        </span>
+                                    </div>
+                                    <div class="row"> 
+                                        $${item.price}
+                                    </div>
+                                    <div class="row"> 
+                                        <em>${item.description}</em>
+                                    </div>
+                                </div>
+    
+                                <div style="text-align: center; margin-bottom: 10px">
+                                    <button id="add-btn-${item.id}" class="btn btn-primary" onclick="addToCart(${item.id})">Add to Cart</button>
+                                </div>
+                            </div>`
+
+                        if (count % 2 == 0){
+                            row += "</div>";
+                            payload += row;
+                            row = "";
+                        }
+                    })
+
+                    if (row != ""){
+                        row += "</div>";
+                        payload += row;
+                    }
+
+                    document.getElementById("inventory-section").innerHTML = payload;
+                }
+            })
+        }
+
+        function createSku(){
+            let formData = new FormData();
+            formData.append('name', document.getElementById("add-product-name").value);
+            formData.append('description', document.getElementById("add-product-description").value);
+            formData.append('price', document.getElementById("add-product-price").value);
+
+            // Attach file
+            let imagesPicker = $('#createProductImage')[0];
+            for (let i = 0; i < imagesPicker.files.length; i++){
+                let file = imagesPicker.files[i];
+                formData.append(`image${i}`, file); 
+            }
+
+            $.ajax({
+                type: "POST",
+                url: `/api/stores/${store.id}/skus`,
+                data: formData,
+                contentType: false,
+                processData: false, 
+                success: function (body, res, xhr) {
+                    renderInventory();
+                },
+                error: function(err){
+                    alert("Unable to create post, please try again.")
+                }
+            })
+        }
+
+        function editSku(){
+            let formData = new FormData();
+            formData.append('name', document.getElementById("edit-product-name").value);
+            formData.append('description', document.getElementById("edit-product-description").value);
+            formData.append('price', document.getElementById("edit-product-price").value);
+
+            // Attach file
+            let imagesPicker = $('#editProductImage')[0];
+            for (let i = 0; i < imagesPicker.files.length; i++){
+                let file = imagesPicker.files[i];
+                formData.append(`image${i}`, file); 
+            }
+            
+            $.ajax({
+                type: "put",
+                url: `/api/stores/${store.id}/skus/${document.getElementById("edit-product-id").value}`,
+                data: formData,
+                contentType: false,
+                processData: false, 
+                success: function (body, res, xhr) {
+                    renderInventory();
+                },
+                error: function(err){
+                    alert("Unable to create post, please try again.")
+                }
+            })
+        }
+
+        function editStore(){
+            let formData = new FormData();
+            formData.append('name', document.getElementById("edit-store-name").value);
+            formData.append('description', document.getElementById("edit-store-description").value);
+            formData.append('address', document.getElementById("edit-store-address").value);
+
+            // Attach file
+            let imagesPicker = $('#editStoreImage')[0];
+            for (let i = 0; i < imagesPicker.files.length; i++){
+                let file = imagesPicker.files[i];
+                formData.append(`image${i}`, file); 
+            }
+            
+            $.ajax({
+                type: "put",
+                url: `/api/stores/${store.id}`,
+                data: formData,
+                contentType: false,
+                processData: false, 
+                success: function (body, res, xhr) {
+                    renderShop();
+                    renderInventory();
+                },
+                error: function(err){
+                    alert("Unable to create post, please try again.")
+                }
+            })
+        }
+
+        function deleteSku(id){
+            $.ajax({
+                type: "delete",
+                url: `/api/stores/${store.id}/skus/${id}`,
+                success: function (body, res, xhr) {
+                    renderInventory();
+                },
+                error: function(err){
+                    alert("Unable to create post, please try again.")
+                }
+            })
+        }
+
+        function prepareEditModal(id){
+            let sku = skus[id];
+
+            document.getElementById("edit-product-name").value = sku.name;
+            document.getElementById("edit-product-description").value = sku.description;
+            document.getElementById("edit-product-price").value =  sku.price;
+            document.getElementById("edit-product-id").value = sku.id;
+        }
+
+        function prepareEditStoreModal(){
+            document.getElementById("edit-store-name").value = store.name;
+            document.getElementById("edit-store-description").value = store.description;
+            document.getElementById("edit-store-address").value = store.address;     
+        }
+
+        function addToCart(id){
+            const currentUser = JSON.parse(localStorage.getItem("currentUser" || "{}"));
+
+            $.ajax({
+                type: "POST",
+                url: `/api/users/${currentUser.id}/shoppingCarts/active/addItem`,
+                contentType: "application/json",
+                data: JSON.stringify({
+                    itemId: id
+                }),
+                success: function (body, res, xhr) {
+                    alert("Item added");
+                },
+                error: function(err){
+                    alert("Unable to create post, please try again.")
+                }
+            })
+        }
+
+        // renderPersonalDetail();
+        renderUserBanner();
+        // renderMyPost();
+        renderShop();
+
+    </script>
+
+    <script src="javascripts/topnav.js"></script>
+</body>
+
+</html>
